@@ -1,0 +1,17 @@
+services:
+  database:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init-db/:/docker-entrypoint-initdb.d/
+    networks:
+      - my_network
+    environment:
+      - POSTGRES_DB=rsikspr
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "2023:5432"
+
+volumes:
+  pgdata:
